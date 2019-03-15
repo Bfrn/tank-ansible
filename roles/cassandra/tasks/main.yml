@@ -1,0 +1,30 @@
+- name: Add the public key
+  apt_key: 
+    keyserver: pool.sks-keyservers.net
+    id: "{{ public_key }}"
+
+- name: Add the Apache repository of Cassandra
+  apt_repository:
+    repo: deb http://www.apache.org/dist/cassandra/debian 36x main
+    filename: cassandra.sources.list
+
+- name: Update repositories cache and install "cassandra" package
+  apt:
+    name: cassandra
+    update_cache: yes
+
+- name: Stop Cassandra
+  service:
+    name: cassandra
+    state: stopped
+
+- name: Create Cassandra config from template
+  template: 
+    backup: yes
+    src: cassandra.yaml.j2
+    dest: "{{ cassandra_config_file }}"
+
+- name: Restart Cassandra
+  service:
+    name: cassandra
+    state: restarted

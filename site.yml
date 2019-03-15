@@ -1,0 +1,4 @@
+- import_playbook: proxy_nodes.yml
+- import_playbook: cassandra_nodes.yml
+- import_playbook: cassandra_seed_nodes.yml
+- import_playbook: tank_nodes.yml

@@ -1,0 +1,6 @@
+- name: Create docker container whoami
+  docker_container:
+    name: whoami
+    image: jwilder/whoami
+    ports:
+    - "8000:8000"

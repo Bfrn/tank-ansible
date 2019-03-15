@@ -1,0 +1,4 @@
+- hosts: tank_nodes
+  become: true
+  roles:
+  - docker

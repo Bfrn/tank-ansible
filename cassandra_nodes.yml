@@ -1,0 +1,4 @@
+- hosts: cassandra_nodes
+  become: true
+  roles:
+  - cassandra

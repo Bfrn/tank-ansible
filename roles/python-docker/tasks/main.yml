@@ -1,0 +1,8 @@
+- name: Install pip
+  apt:
+    name: python3-pip
+
+- name: Install docker python module
+  pip:
+    name: docker
+    executable: pip3

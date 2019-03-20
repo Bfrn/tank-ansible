@@ -18,6 +18,22 @@
     name: cassandra
     state: stopped
 
+- name: Install "python-lxml" package as requirement for maven_artifact module
+  apt:
+    name: python-lxml
+
+- maven_artifact:
+   group_id: com.vividsolutions
+   artifact_id: jts-core
+   version: 1.14.0
+   dest: /usr/share/cassandra/lib/jts-core-1.14.0.jar
+
+- maven_artifact:
+   group_id: com.stratio.cassandra
+   artifact_id: cassandra-lucene-index-plugin
+   version: 3.11.3.0
+   dest: /usr/share/cassandra/lib/cassandra-lucene-index-plugin-3.11.3.0.jar
+
 - name: Create Cassandra config from template
   template: 
     backup: yes

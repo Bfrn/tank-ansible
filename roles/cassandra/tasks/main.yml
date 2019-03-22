@@ -20,19 +20,19 @@
 
 - name: Install "python-lxml" package as requirement for maven_artifact module
   apt:
-    name: python-lxml
+    name: python3-lxml
 
-- maven_artifact:
-   group_id: com.vividsolutions
-   artifact_id: jts-core
-   version: 1.14.0
-   dest: /usr/share/cassandra/lib/jts-core-1.14.0.jar
+- name: Download jts-core maven_artifact
+  get_url:
+   url: http://central.maven.org/maven2/com/stratio/cassandra/cassandra-lucene-index-plugin/3.11.3.0/cassandra-lucene-index-plugin-3.11.3.0.jar
+   dest: /usr/share/cassandra/lib/
+   mode: 644
 
-- maven_artifact:
-   group_id: com.stratio.cassandra
-   artifact_id: cassandra-lucene-index-plugin
-   version: 3.11.3.0
-   dest: /usr/share/cassandra/lib/cassandra-lucene-index-plugin-3.11.3.0.jar
+- name: Download cassandra-lucene-index-plugin maven_artifact
+  get_url:
+   url: http://central.maven.org/maven2/com/vividsolutions/jts-core/1.14.0/jts-core-1.14.0.jar
+   dest: /usr/share/cassandra/lib/
+   mode: 644
 
 - name: Create Cassandra config from template
   template: 

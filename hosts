@@ -2,8 +2,8 @@
 ansible_user=ubuntu
 ansible_ssh_private_key_file=/var/ans/master_key
 ansible_python_interpreter=/usr/bin/python3
-username=docker-user
-password=docker-token
+docker_username=docker-user
+docker_password=docker-token
 
 [proxy_nodes]
 192.168.0.22

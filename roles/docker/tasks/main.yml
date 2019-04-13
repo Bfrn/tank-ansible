@@ -22,12 +22,7 @@
     username: "{{ docker_username }}"
     password: "{{ docker_password }}"
 
-- name: Stop Tank
-  docker_container:
-    name: tank
-    state: stopped
-
-- name: Remove Tank
+- name: Stop and remove Tank
   docker_container:
     name: tank
     state: absent
@@ -37,7 +32,10 @@
     name: tank 
     image: geocode.igd.fraunhofer.de:4567/marauder/tank:lucene_index 
     restart: yes
+    pull: yes
     ports:
     - "8888:8888"
     env:
-      db_hosts: "{{ cassandra_nodes }}"
+      TANK_DB_HOSTS: "{{ cassandra_nodes }}"
+      TANK_DB_STRATEGY: NetworkTopologyStrategy
+      TANK_DB_REPL: 3

@@ -10,7 +10,7 @@
 
 - name: Update repositories cache and install "cassandra" package
   apt:
-    name: cassandra
+    name: cassandra=3.11.3
     update_cache: yes
 
 - name: Stop Cassandra

@@ -15,7 +15,6 @@ upstream_hosts=server 192.168.0.23:8888;server 192.168.0.7:8888;server 192.168.0
 
 [cassandra:children]
 cassandra_nodes
-cassandra_seed_nodes
 
 [cassandra:vars]
 cassandra_config_file=/etc/cassandra/cassandra.yaml
@@ -28,10 +27,6 @@ cassandra_seed_nodes=192.168.0.7,192.168.0.23
 192.168.0.22
 192.168.0.10
 192.168.0.32
-
-[cassandra_seed_nodes]
-192.168.0.7
-192.168.0.23
 
 [tank_nodes]
 192.168.0.7

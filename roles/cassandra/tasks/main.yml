@@ -44,10 +44,16 @@
     src: cassandra.yaml.j2
     dest: "{{ cassandra_config_file }}"
 
-- name: Remove data directory
+- name: Remove cassandra directory
   file:
-    path: /var/lib/cassandra/data/system/
+    path: /var/lib/cassandra/
     state: absent
+
+- name: Create cassandra directory
+  file:
+    path: /var/lib/cassandra/
+    owner: cassandra
+    state: directory
 
 - name: Restart Cassandra
   service:

@@ -38,4 +38,4 @@
     env:
       TANK_DB_HOSTS: "{{ cassandra_nodes }}"
       TANK_DB_STRATEGY: NetworkTopologyStrategy
-      TANK_DB_REPL: 3
+      TANK_DB_REPL: "3"

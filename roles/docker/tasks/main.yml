@@ -32,6 +32,7 @@
     name: tank 
     image: geocode.igd.fraunhofer.de:4567/marauder/tank:lucene_index 
     restart: yes
+    restart_policy: always
     pull: yes
     ports:
     - "8888:8888"

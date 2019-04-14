@@ -5,12 +5,12 @@
 
 - name: Add the Apache repository of Cassandra
   apt_repository:
-    repo: deb http://www.apache.org/dist/cassandra/debian 36x main
+    repo: deb http://www.apache.org/dist/cassandra/debian 311x main
     filename: cassandra.sources.list
 
 - name: Update repositories cache and install "cassandra" package
   apt:
-    name: cassandra=3.11.3
+    name: cassandra=3.11.4
     update_cache: yes
 
 - name: Stop Cassandra

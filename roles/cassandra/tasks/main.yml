@@ -19,9 +19,12 @@
     name: cassandra
     state: stopped
 
-- name: Install "python-lxml" package as requirement for maven_artifact module
-  apt:
-    name: python3-lxml
+- name: add myself to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1[ \t]+localhost'
+    line: '127.0.0.1 localhost {{ ansible_hostname }}'
+    state: present
 
 - name: Download jts-core maven_artifact
   get_url:

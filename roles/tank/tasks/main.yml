@@ -1,0 +1,24 @@
+- name: Stop and remove Tank
+  docker_container:
+    name: tank2
+    state: absent
+
+- name: Create docker container tank
+  docker_container:
+    name: tank2 
+    image: geocode.igd.fraunhofer.de:4567/marauder/tank 
+    restart: yes
+    pull: yes
+    ports:
+    - "8880:8888"
+    env:
+      TANK_DB_HOSTS: "{{ cassandra_nodes }}"
+      TANK_DB_STRATEGY: NetworkTopologyStrategy
+      TANK_DB_REPL: "3"
+      TANK_MAIN_ATTR: "postcode"
+      TANK_MAIN_ATTR_DEFAULT: "0"
+      TANK_ADD_TIMESTAMP: true
+      TANK_PARTITION_KEYS: "postcode"
+      TANK_PRIMARY_KEYS: "id"
+      TANK_ATTR_FIELDS: "timestamp timestamp, postcode int, city text, road text, area double, county text, id int, lat double, lon double"
+      TANK_DB_TABLE: "buildings"

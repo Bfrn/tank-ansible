@@ -21,21 +21,3 @@
     registry: geocode.igd.fraunhofer.de:4567
     username: "{{ docker_username }}"
     password: "{{ docker_password }}"
-
-- name: Stop and remove Tank
-  docker_container:
-    name: tank
-    state: absent
-
-- name: Create docker container tank
-  docker_container:
-    name: tank 
-    image: geocode.igd.fraunhofer.de:4567/marauder/tank:lucene_index 
-    restart: yes
-    pull: yes
-    ports:
-    - "8888:8888"
-    env:
-      TANK_DB_HOSTS: "{{ cassandra_nodes }}"
-      TANK_DB_STRATEGY: NetworkTopologyStrategy
-      TANK_DB_REPL: "3"

@@ -8,6 +8,7 @@
     name: tank2 
     image: geocode.igd.fraunhofer.de:4567/marauder/tank 
     restart: yes
+    restart_policy: always
     pull: yes
     ports:
     - "8880:8888"

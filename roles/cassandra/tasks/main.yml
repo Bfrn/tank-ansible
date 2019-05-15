@@ -5,12 +5,13 @@
 
 - name: Add the Apache repository of Cassandra
   apt_repository:
-    repo: deb http://www.apache.org/dist/cassandra/debian 36x main
+    repo: deb http://www.apache.org/dist/cassandra/debian 311x main
     filename: cassandra.sources.list
 
 - name: Update repositories cache and install "cassandra" package
   apt:
-    name: cassandra
+    name: cassandra=3.11.4
+    allow_unauthenticated: yes
     update_cache: yes
 
 - name: Stop Cassandra
@@ -18,21 +19,24 @@
     name: cassandra
     state: stopped
 
-- name: Install "python-lxml" package as requirement for maven_artifact module
-  apt:
-    name: python-lxml
+- name: add myself to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1[ \t]+localhost'
+    line: '127.0.0.1 localhost {{ ansible_hostname }}'
+    state: present
 
-- maven_artifact:
-   group_id: com.vividsolutions
-   artifact_id: jts-core
-   version: 1.14.0
-   dest: /usr/share/cassandra/lib/jts-core-1.14.0.jar
+- name: Download jts-core maven_artifact
+  get_url:
+   url: http://central.maven.org/maven2/com/stratio/cassandra/cassandra-lucene-index-plugin/3.11.3.0/cassandra-lucene-index-plugin-3.11.3.0.jar
+   dest: /usr/share/cassandra/lib/
+   mode: 644
 
-- maven_artifact:
-   group_id: com.stratio.cassandra
-   artifact_id: cassandra-lucene-index-plugin
-   version: 3.11.3.0
-   dest: /usr/share/cassandra/lib/cassandra-lucene-index-plugin-3.11.3.0.jar
+- name: Download cassandra-lucene-index-plugin maven_artifact
+  get_url:
+   url: http://central.maven.org/maven2/com/vividsolutions/jts-core/1.14.0/jts-core-1.14.0.jar
+   dest: /usr/share/cassandra/lib/
+   mode: 644
 
 - name: Create Cassandra config from template
   template: 
@@ -40,10 +44,16 @@
     src: cassandra.yaml.j2
     dest: "{{ cassandra_config_file }}"
 
-- name: Remove data directory
+- name: Remove cassandra directory
   file:
-    path: /var/lib/cassandra/data/system/
+    path: /var/lib/cassandra/
     state: absent
+
+- name: Create cassandra directory
+  file:
+    path: /var/lib/cassandra/
+    owner: cassandra
+    state: directory
 
 - name: Restart Cassandra
   service:

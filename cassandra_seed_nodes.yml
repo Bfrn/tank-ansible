@@ -1,4 +1,0 @@
-- hosts: cassandra_seed_nodes
-  become: true
-  roles:
-  - cassandra

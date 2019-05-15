@@ -1,29 +1,39 @@
 [all:vars]
-ansible_user=root 
+ansible_user=ubuntu
 ansible_ssh_private_key_file=/var/ans/master_key
+ansible_python_interpreter=/usr/bin/python3
+docker_username=docker-user
+docker_password=docker-token
 
 [proxy_nodes]
-host01
+192.168.0.16
 
 [proxy_nodes:vars]
 nginx_config_file=/etc/nginx/nginx.conf
-upstream_hosts=server host04:8000;server host05:8000;
+#upstream_hosts=server 192.168.0.23:8888;server 192.168.0.7:8888;server 192.168.0.22:8888;server 192.168.0.10:8888;server 192.168.0.32:8888;
+upstream_hosts=server 192.168.0.5:8888;server 192.168.0.7:8888;server 192.168.0.9:8888;server 192.168.0.10:8888;server 192.168.0.16:8888;
 
 [cassandra:children]
 cassandra_nodes
-cassandra_seed_nodes
 
 [cassandra:vars]
 cassandra_config_file=/etc/cassandra/cassandra.yaml
 cassandra_cluster_name=tankstore
-cassandra_seed_nodes=host03
+cassandra_seed_nodes=192.168.0.5,192.168.0.7
 
 [cassandra_nodes]
-host02
-
-[cassandra_seed_nodes]
-host03
+192.168.0.5
+192.168.0.7
+192.168.0.9
+192.168.0.10
+192.168.0.16
 
 [tank_nodes]
-host04
-host05
+192.168.0.5
+192.168.0.7
+192.168.0.9
+192.168.0.10
+192.168.0.16
+
+[tank_nodes:vars]
+cassandra_nodes=192.168.0.5,192.168.0.7,192.168.0.9,192.168.0.10,192.168.0.16

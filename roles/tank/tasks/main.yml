@@ -19,7 +19,7 @@
     restart_policy: always
     pull: yes
     ports:
-    - "8880:8888"
+    - "8888:8888"
     env:
       JAVA_OPTS: "-Xms1g -Xmx1g"
       TANK_DB_HOSTS: "{{ cassandra_nodes }}"

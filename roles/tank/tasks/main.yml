@@ -1,6 +1,6 @@
 - name: Stop and remove Tank
   docker_container:
-    name: tank2
+    name: tank
     state: absent
 
 - name: Prune Docker
@@ -13,8 +13,8 @@
 
 - name: Create docker container tank
   docker_container:
-    name: tank2 
-    image: geocode.igd.fraunhofer.de:4567/marauder/tank:zCurve
+    name: tank 
+    image: geocode.igd.fraunhofer.de:4567/marauder/tank:latest
     restart: yes
     restart_policy: always
     pull: yes

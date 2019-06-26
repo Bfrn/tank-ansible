@@ -24,3 +24,9 @@
     name: prometheus-node-exporter
     allow_unauthenticated: yes
     update_cache: yes
+
+- name: Check if node exporter emits metrics
+  uri:
+    url: http://127.0.0.1:9100/metrics
+    method: GET
+    status_code: 200

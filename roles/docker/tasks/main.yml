@@ -18,3 +18,9 @@
     registry: geocode.igd.fraunhofer.de:4567
     username: "{{ docker_username }}"
     password: "{{ docker_password }}"
+
+- name: Install Prometheus Node Exporter
+  apt:
+    name: prometheus-node-exporter
+    allow_unauthenticated: yes
+    update_cache: yes

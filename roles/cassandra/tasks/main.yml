@@ -14,6 +14,12 @@
     allow_unauthenticated: yes
     update_cache: yes
 
+- name: Install Prometheus Node Exporter
+  apt:
+    name: prometheus-node-exporter
+    allow_unauthenticated: yes
+    update_cache: yes
+
 - name: Stop Cassandra
   service:
     name: cassandra

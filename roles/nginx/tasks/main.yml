@@ -3,6 +3,7 @@
     name: 
       - nginx
       - prometheus
+      - grafana
     state: latest
     update_cache: yes
 

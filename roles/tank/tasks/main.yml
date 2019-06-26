@@ -21,10 +21,10 @@
     ports:
     - "8888:8888"
     env:
-      JAVA_OPTS: "-Xms1g -Xmx1g"
+      JAVA_OPTS: "-Xms2g -Xmx2g"
       TANK_DB_HOSTS: "{{ cassandra_nodes }}"
       TANK_DB_STRATEGY: NetworkTopologyStrategy
-      TANK_DB_REPL: "3"
+      TANK_DB_REPL: "1"
       TANK_DB_INDEX: "us_idx"
       TANK_MAIN_ATTR: ""
       TANK_MAIN_ATTR_DEFAULT: ""

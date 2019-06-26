@@ -1,6 +1,8 @@
-- name: Update repositories cache and install "nginx" package
+- name: Update repositories cache and install "nginx, prometheus" package
   apt:
-    name: nginx
+    name: 
+      - nginx
+      - prometheus
     state: latest
     update_cache: yes
 
@@ -19,3 +21,20 @@
   service:
     name: nginx
     state: restarted
+
+
+- name: prometheus config file
+  template:
+    src: prometheus.conf.j2
+    dest: /etc/prometheus/prometheus.conf
+
+- name: Restart prometheus
+  service:
+    name: prometheus
+    state: restarted
+
+- name: Check if prometheus is accessible
+  uri:
+    url: http://localhost:9090
+    method: GET
+    status_code: 200

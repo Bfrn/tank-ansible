@@ -10,12 +10,12 @@ scrape_configs:
     static_configs:
       - targets:
       {% for host in groups['tank_nodes'] %}
-      {% if inventory_hostname != host and host not in groups['proxy_nodes'] %}
+      {% if inventory_hostname != host %}
         - '{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100'
       {% endif %}
       {% endfor %}
       {% for host in groups['cassandra_nodes'] %}
-      {% if inventory_hostname != host and host not in groups['tank_nodes'] and host not in groups['proxy_nodes'] %}
+      {% if inventory_hostname != host and host not in groups['tank_nodes'] %}
         - '{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100'
       {% endif %}
       {% endfor %}

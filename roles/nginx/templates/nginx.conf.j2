@@ -64,15 +64,17 @@ http {
 	include /etc/nginx/conf.d/*.conf;
 	#include /etc/nginx/sites-enabled/*;
 
-	upstream myapp1 {
-		{{ upstream_hosts }}
+	upstream tank {
+		{%- for host in groups['tank_nodes'] -%}
+		server {{ hostvars[host]['ansible_default_ipv4']['address'] }}:8888; 
+		{%- endfor -%}
 	}
 
   server {
       listen 80;
 
       location / {
-          proxy_pass http://myapp1;
+          proxy_pass http://tank;
       }
   }
 }

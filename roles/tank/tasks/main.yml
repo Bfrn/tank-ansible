@@ -3,6 +3,11 @@
     name: tank
     state: absent
 
+- name: Stop and remove Tank Navigator
+  docker_container:
+    name: navigator
+    state: absent
+
 - name: Prune Docker
   docker_prune:
     containers: yes
@@ -35,3 +40,13 @@
       TANK_PRIMARY_KEYS: "timestamp"
       TANK_ATTR_FIELDS: "timestamp timestamp, postcode int, city text, road text, area double, county text, id int, lat double, lon double"
       TANK_DB_TABLE: "buildings"
+
+- name: Create docker container tank navigator
+  docker_container:
+    name: navigator 
+    image: geocode.igd.fraunhofer.de:4567/marauder/navigator:latest
+    restart: yes
+    restart_policy: always
+    pull: yes
+    ports:
+    - "8081:80"

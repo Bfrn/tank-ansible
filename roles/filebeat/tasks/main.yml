@@ -1,0 +1,3 @@
+- name: Setup filebeat
+  include_tasks: setup.yml
+  when: ( startElk|default(False)|bool )

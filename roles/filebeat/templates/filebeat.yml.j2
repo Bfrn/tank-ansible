@@ -1,0 +1,27 @@
+logging.level: debug
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat.log
+  keepfiles: 7
+  permissions: 0644
+  
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      labels.dedot: true
+      templates:
+        - condition:
+            contains:
+              docker.container.image: geocode.igd.fraunhofer.de:4567/marauder/tank:latest
+          config:
+            - type: docker
+              containers.ids:
+                - "${data.docker.container.id}"
+
+output.logstash:
+  hosts: [
+    {% for proxy_node in groups['proxy_nodes'] %}
+      '{{ proxy_node }}:5044'{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]

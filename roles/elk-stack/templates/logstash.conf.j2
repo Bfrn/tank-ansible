@@ -1,0 +1,25 @@
+input {
+  beats {
+    port => 5044
+  }
+}
+
+filter {
+  grok {
+    match => {
+      "message" => "%{DATESTAMP:timestamp} \[%{WORD:rw1}-%{INT:rn1}-%{INT:rn2}\] INFO  Application - %{NUMBER:statusCode} %{WORD:statusMessage}: %{WORD:method} - %{URIPATHPARAM:path}"
+    }
+  }
+  
+  if "_grokparsefailure" in [tags] {
+    drop { }
+  }
+
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://es01:9200"]
+    index => "tank-logs" 
+  }
+}

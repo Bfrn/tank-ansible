@@ -25,6 +25,8 @@
     pull: yes
     ports:
     - "8888:8888"
+    volumes:
+    - /var/log/tank:/app/logs
     env:
       JAVA_OPTS: "-Xms2g -Xmx2g"
       TANK_DB_HOSTS: "{%- for host in groups['cassandra_nodes'] -%}

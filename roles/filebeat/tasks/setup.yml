@@ -15,6 +15,27 @@
   shell: echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
   tags: [ apt ]
 
+- name: Create a tank-log directory if it does not exist
+  file:
+    path: /var/log/tank
+    state: directory
+    owner: root
+    mode: '0755'
+
+- name: Create benchmark.log
+  file:
+    path: /var/log/tank/benchmark.log
+    owner: root
+    mode: '0666'
+    state: touch
+
+- name: Create tank.log
+  file:
+    path: /var/log/tank/tank.log
+    owner: root
+    mode: '0666'
+    state: touch
+
 - name: Install filebeat
   apt: 
     name: filebeat

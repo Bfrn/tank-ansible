@@ -1,0 +1,22 @@
+- name: Stop and remove Logstash
+  docker_container:
+    name: logstash
+    state: absent
+
+- name: Stop and remove Elasticsearch
+  docker_container:
+    name: es01
+    state: absent
+
+- name: Stop and remove Kibana
+  docker_container:
+    name: kibana
+    state: absent
+
+- name: Prune Docker
+  docker_prune:
+    containers: yes
+    images: yes
+    networks: yes
+    volumes: yes
+    builder_cache: yes

@@ -5,7 +5,12 @@ logging.files:
   name: filebeat.log
   keepfiles: 7
   permissions: 0644
-  
+
+filebeat.inputs:
+- type: log
+  paths:
+    - /var/log/tank/benchmark.log
+
 filebeat.autodiscover:
   providers:
     - type: docker

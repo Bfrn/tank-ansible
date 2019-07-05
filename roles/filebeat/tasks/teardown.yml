@@ -1,0 +1,4 @@
+- name: Stop filebeat
+  service:
+    name: filebeat
+    state: stopped

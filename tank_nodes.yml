@@ -3,4 +3,4 @@
   roles:
   - filebeat
   - tank
-  
+  - elk-stack

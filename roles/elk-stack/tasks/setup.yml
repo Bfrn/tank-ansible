@@ -1,0 +1,67 @@
+- name: Create elk bridge-network
+  docker_network:
+    name: elk-net
+
+- name: Copy logstash.conf to remote-server
+  template: 
+    src: logstash.conf.j2
+    dest: /tmp/logstash.conf
+    owner: root
+    mode: '0644'
+
+- name: Copy pipelines.yml to remote-server
+  template: 
+    src: pipelines.yml.j2
+    dest: /tmp/pipelines.yml
+    owner: root
+    mode: '0644'
+
+- name: Create a logstash docker-container
+  docker_container:
+    name: logstash
+    image: docker.elastic.co/logstash/logstash:7.0.1
+    env:
+      XPACK_MONITORING_ELASTICSEARCH_HOSTS: http://es01:9200
+    volumes:
+      - /tmp/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /tmp/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+    ports:
+      - "5044:5044"
+    networks_cli_compatible: yes
+    networks:
+      - name: elk-net
+
+- sysctl:
+    name: vm.max_map_count
+    value: "262144"
+    reload: yes
+
+- name: Create a elasticsearch docker-container
+  docker_container:
+    name: es01
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.0.1
+    env:
+      node.name: "es01"
+      cluster.initial_master_nodes: "es01"
+      cluster.name: "docker-cluster"
+      bootstrap.memory_lock: "true"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ulimits:
+      - memlock:-1:-1
+    volumes: 
+      - esdata01:/usr/share/elasticsearch/data
+    networks_cli_compatible: yes
+    networks:
+      - name: elk-net
+
+- name: Create a kibana docker-container
+  docker_container:
+    name: kibana
+    image: docker.elastic.co/kibana/kibana:7.0.1
+    env:
+      ELASTICSEARCH_HOSTS: "http://es01:9200"
+    ports:
+      - "5601:5601"
+    networks_cli_compatible: yes
+    networks:
+      - name: elk-net

@@ -39,6 +39,7 @@
       TANK_PARTITION_KEYS: "hash"
       TANK_PRIMARY_KEYS: "timestamp"
       TANK_ATTR_FIELDS: "timestamp timestamp, postcode int, city text, road text, area double, county text, id int, lat double, lon double"
+      TANK_TILE_ATTRIBUTES: "postcode, city, area, road, lon, lat, county"
       TANK_DB_TABLE: "buildings"
 
 - name: Create docker container tank navigator

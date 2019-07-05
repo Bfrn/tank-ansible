@@ -70,6 +70,12 @@ http {
 		{%- endfor -%}
 	}
 
+	upstream navigator {
+		{%- for host in groups['tank_nodes'] -%}
+		server {{ hostvars[host]['ansible_default_ipv4']['address'] }}:8081; 
+		{%- endfor -%}
+	}
+
   server {
       listen 80;
 
@@ -79,7 +85,7 @@ http {
       }
 
       location /navigator/ {
-          proxy_pass http://localhost:8081;
+          proxy_pass http://navigator;
       }
   }
 }

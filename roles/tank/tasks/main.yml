@@ -24,7 +24,7 @@
       JAVA_OPTS: "-Xms2g -Xmx2g"
       TANK_DB_HOSTS: "{%- for host in groups['cassandra_nodes'] -%}
       {{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}
-      {%- endfor -%}]"
+      {%- endfor -%}"
       TANK_DB_STRATEGY: NetworkTopologyStrategy
       TANK_DB_REPL: "1"
       TANK_DB_INDEX: "us_idx"

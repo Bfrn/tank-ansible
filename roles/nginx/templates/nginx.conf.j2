@@ -73,11 +73,12 @@ http {
   server {
       listen 80;
 
-      location ^~ /tank {
+      location /tank/ {
+      	  rewrite ^/tank(.*)$ $1 break;
           proxy_pass http://tank;
       }
 
-      location /navigator {
+      location /navigator/ {
           proxy_pass http://localhost:8081;
       }
   }

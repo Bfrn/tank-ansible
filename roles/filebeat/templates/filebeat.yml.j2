@@ -25,8 +25,4 @@ filebeat.autodiscover:
                 - "${data.docker.container.id}"
 
 output.logstash:
-  hosts: [
-    {% for proxy_node in groups['proxy_nodes'] %}
-      '{{ proxy_node }}:5044'{% if not loop.last %},{% endif %}
-    {% endfor %}
-  ]
+  hosts: ["{{ groups['proxy_nodes'][0] }}:5044"]

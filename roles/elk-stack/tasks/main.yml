@@ -1,6 +1,6 @@
 - name: Setup elk-stack
   include_tasks: setup.yml
-  when: ( startElk|default(False)|bool )
+  when: ( setupElk|default(False)|bool )
 
 - name: Teardown elk-stack
   include_tasks: teardown.yml

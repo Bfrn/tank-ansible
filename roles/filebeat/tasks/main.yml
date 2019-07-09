@@ -1,6 +1,6 @@
 - name: Setup filebeat
   include_tasks: setup.yml
-  when: ( startElk|default(False)|bool )
+  when: ( setupElk|default(False)|bool )
 
 - name: Teardown filebeat
   include_tasks: teardown.yml

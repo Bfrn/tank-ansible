@@ -65,3 +65,13 @@
     networks_cli_compatible: yes
     networks:
       - name: elk-net
+
+- name: Import tank-dashboard
+  uri:
+    url: "http://localhost:5601/api/kibana/dashboards/import"
+    method: POST
+    status_code: 200
+    body: "{{ lookup('template', './tank_dashboard.json.j2') }}" 
+    body_format: json
+    headers:
+      kbn-xsrf: true

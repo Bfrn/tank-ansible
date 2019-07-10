@@ -6,7 +6,7 @@ docker_username=docker-user
 docker_password=docker-token
 setupElk=False
 teardownElk=False
-
+pruneData=True
 
 [proxy_nodes]
 192.168.0.2

@@ -33,16 +33,15 @@
     name: prometheus
     state: restarted
 
-- name: Check if prometheus is accessible
-  uri:
-    url: http://localhost:9090
-    method: GET
-    status_code: 200
+#- name: Check if prometheus is accessible
+#  uri:
+#    url: http://localhost:9090
+#    method: GET
+#    status_code: 200
 
 - name: ensure grafana apt key is present
   apt_key:
     url: https://packages.grafana.com/gpg.key
-    # id: E732A79A
     state: present
   tags: [ apt ]
 

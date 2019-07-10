@@ -60,6 +60,7 @@
   file:
     path: /var/lib/cassandra/
     state: absent
+  when: ( pruneData|default(False)|bool )
 
 - name: Create cassandra directory
   file:

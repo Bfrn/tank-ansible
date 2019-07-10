@@ -1,4 +1,6 @@
 - hosts: tank_nodes
   become: true
   roles:
+  - filebeat
   - tank
+  - elk-stack

@@ -94,6 +94,8 @@
     restart: yes
     restart_policy: always
     pull: yes
+    links:
+    - "mongo:mongo"
     ports:
     - "8082:8080"
     env:

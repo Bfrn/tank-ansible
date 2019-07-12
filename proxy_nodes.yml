@@ -4,6 +4,7 @@
 - hosts: proxy_nodes
   become: true
   roles:
+  - docker
   - nginx
   - elk-stack
   

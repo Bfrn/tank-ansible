@@ -33,12 +33,6 @@
     name: prometheus
     state: restarted
 
-#- name: Check if prometheus is accessible
-#  uri:
-#    url: http://localhost:9090
-#    method: GET
-#    status_code: 200
-
 - name: ensure grafana apt key is present
   apt_key:
     url: https://packages.grafana.com/gpg.key
@@ -66,3 +60,42 @@
     state=started
     enabled=yes
   become: yes
+
+- name: Stop and remove MongoDB
+  docker_container:
+    name: mongo
+    state: absent
+
+- name: Stop and remove Tank Exhauster
+  docker_container:
+    name: exhauster
+    state: absent
+
+- name: Prune Docker
+  docker_prune:
+    containers: yes
+    images: yes
+    networks: yes
+    volumes: yes
+    builder_cache: yes
+
+- name: Create docker container mongodb
+  docker_container:
+    name: mongo 
+    image: mongo:latest
+    restart: yes
+    restart_policy: always
+    pull: yes 
+
+- name: Create docker container tank exhauster
+  docker_container:
+    name: exhauster 
+    image: geocode.igd.fraunhofer.de:4567/marauder/exhauster:latest
+    restart: yes
+    restart_policy: always
+    pull: yes
+    ports:
+    - "8082:8080"
+    env:
+      EXHAUSTER_MONGO_HOST: "mongo"
+      

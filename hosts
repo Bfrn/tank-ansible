@@ -20,6 +20,7 @@ cassandra_nodes
 [cassandra:vars]
 cassandra_config_file=/etc/cassandra/cassandra.yaml
 cassandra_cluster_name=tankstore
+cassandra_data_dir=/var/lib/cassandra/
 number_of_seeds=2
 
 [cassandra_nodes]

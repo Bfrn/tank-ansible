@@ -58,13 +58,13 @@
 
 - name: Remove cassandra directory
   file:
-    path: {{ cassandra_data_dir }}
+    path: "{{ cassandra_data_dir }}"
     state: absent
   when: ( pruneData|default(False)|bool )
 
 - name: Create cassandra directory
   file:
-    path: {{ cassandra_data_dir }}
+    path: "{{ cassandra_data_dir }}"
     owner: cassandra
     state: directory
 

@@ -72,7 +72,7 @@
 - name: Mount up device by label
   mount:
     path: /opt/data
-    dev: "{{ db_vol }}"
+    src: "{{ db_vol }}"
     fstype: ext4
     state: mounted
     opts: defaults,nofail

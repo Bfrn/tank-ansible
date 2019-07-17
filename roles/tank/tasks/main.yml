@@ -44,6 +44,13 @@
       TANK_TILE_ATTRIBUTES: "postcode, city, area, road, lon, lat, county"
       TANK_DB_TABLE: "buildings"
 
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ navigator_config_file | dirname }}"
+    state: directory
+    recurse: true
+    mode: '0755'
+
 - name: Create Navigator config from template
   template: 
     backup: yes

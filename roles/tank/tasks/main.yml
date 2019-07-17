@@ -44,6 +44,12 @@
       TANK_TILE_ATTRIBUTES: "postcode, city, area, road, lon, lat, county"
       TANK_DB_TABLE: "buildings"
 
+- name: Create Navigator config from template
+  template: 
+    backup: yes
+    src: navigator.json.j2
+    dest: "{{ navigator_config_file }}"
+
 - name: Create docker container tank navigator
   docker_container:
     name: navigator 
@@ -53,3 +59,5 @@
     pull: yes
     ports:
     - "8081:80"
+     volumes:
+    - "{{ navigator_config_file }}:/usr/share/nginx/html/config.json"

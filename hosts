@@ -32,3 +32,7 @@ number_of_seeds=2
 192.168.0.2
 192.168.0.3
 192.168.0.4
+
+[tank_nodes:vars]
+navigator_config_file=/opt/navigator/config.json
+proxy_node_public_ip=192.168.0.2

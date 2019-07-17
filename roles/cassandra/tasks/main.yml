@@ -66,13 +66,13 @@
   filesystem:
     fstype: ext4
     force: true
-    dev: {{ db_vol }}
+    dev: "{{ db_vol }}"
   when: ( (pruneData and use_db_vol) |default(False)|bool )
 
 - name: Mount up device by label
   mount:
     path: /opt/data
-    dev: {{ db_vol }}
+    dev: "{{ db_vol }}"
     fstype: ext4
     state: mounted
     opts: defaults,nofail

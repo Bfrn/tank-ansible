@@ -33,7 +33,7 @@
       {{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}
       {%- endfor -%}"
       TANK_DB_STRATEGY: NetworkTopologyStrategy
-      TANK_DB_REPL: "1"
+      TANK_DB_REPL: "3"
       TANK_DB_INDEX: "us_idx"
       TANK_MAIN_ATTR: ""
       TANK_MAIN_ATTR_DEFAULT: ""

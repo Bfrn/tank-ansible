@@ -21,6 +21,8 @@ cassandra_nodes
 cassandra_config_file=/etc/cassandra/cassandra.yaml
 cassandra_cluster_name=tankstore
 cassandra_data_dir=/var/lib/cassandra/
+use_db_vol=false
+db_vol=/dev/xvdf
 number_of_seeds=2
 
 [cassandra_nodes]

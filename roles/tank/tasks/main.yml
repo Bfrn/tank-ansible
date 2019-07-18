@@ -43,6 +43,9 @@
       TANK_ATTR_FIELDS: "timestamp timestamp, postcode int, city text, road text, area double, county text, id int, lat double, lon double"
       TANK_TILE_ATTRIBUTES: "postcode, city, area, road, lon, lat, county"
       TANK_DB_TABLE: "buildings"
+      TANK_EXHAUSTER_ENABLED: "true"
+      TANK_EXHAUSTER_HOST: "{{ hostvars[groups['proxy_nodes'][0]]['ansible_default_ipv4']['address'] }}"
+      TANK_EXHAUSTER_PORT: "8082"
 
 - name: Create a directory if it does not exist
   file:

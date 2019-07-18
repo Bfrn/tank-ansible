@@ -1,4 +1,4 @@
-- hosts: tank_nodes,cassandra_nodes
+- hosts: tank_nodes,cassandra_nodes,proxy_nodes
   roles:
     
 - hosts: tank_nodes

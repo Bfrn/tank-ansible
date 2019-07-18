@@ -7,6 +7,7 @@ docker_password=docker-token
 setupElk=False
 teardownElk=False
 pruneData=True
+proxy_node_public_ip=192.168.0.2
 
 [proxy_nodes]
 192.168.0.2
@@ -37,4 +38,3 @@ number_of_seeds=2
 
 [tank_nodes:vars]
 navigator_config_file=/opt/navigator/config.json
-proxy_node_public_ip=192.168.0.2

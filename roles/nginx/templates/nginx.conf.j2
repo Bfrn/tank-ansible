@@ -76,6 +76,10 @@ http {
 		{%- endfor -%}
 	}
 
+	upstream exhauster {
+		server localhost:8082;
+	}
+
   server {
       listen 80;
 
@@ -86,6 +90,11 @@ http {
 
       location /navigator/ {
           proxy_pass http://navigator;
+      }
+
+      location /exhauster/ {
+      	rewrite ^/exhauster(.*)$ $1 break;
+          proxy_pass http://exhauster;
       }
   }
 }

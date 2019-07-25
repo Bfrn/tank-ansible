@@ -12,4 +12,11 @@ scrape_configs:
       {%- for host in ( groups['tank_nodes'] + groups['cassandra_nodes'] ) | unique -%}
       '{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100'{% if not loop.last %},{% endif %}
       {%- endfor -%}]
+  - job_name: 'cassandra'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [
+      {%- for host in groups['cassandra_nodes'] -%}
+      '{{ hostvars[host]['ansible_default_ipv4']['address'] }}:7070'{% if not loop.last %},{% endif %}
+      {%- endfor -%}]
       

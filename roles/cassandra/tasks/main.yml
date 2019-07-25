@@ -56,6 +56,18 @@
     src: cassandra.yaml.j2
     dest: "{{ cassandra_config_file }}"
 
+- name: Remove Cassandra JAVA_OPTS JMX line
+  lineinfile:
+    path: /etc/cassandra/cassandra-env.sh
+    state: absent
+    regexp: '^(.*)jmx_prometheus(.*)$'
+
+- name: Add Cassandra JAVA_OPTS JMX line
+  lineinfile:
+    path: /etc/cassandra/cassandra-env.sh
+    line: JVM_OPTS="$JVM_OPTS -javaagent:/opt/jmx_prometheus/jmx_prometheus_javaagent-0.12.0.jar=7070:/opt/jmx_prometheus/cassandra.yml"
+    create: yes
+
 - name: Remove cassandra directory
   file:
     path: "{{ cassandra_data_dir }}"
@@ -84,6 +96,26 @@
     owner: cassandra
     state: directory
 
+- name: Create JMX exporter directory
+  file:
+    path: /opt/jmx_prometheus
+    owner: cassandra
+    state: directory
+
+- name: Copy jmx config
+  template:
+    src: cassandra_jmx.yml
+    dest: /opt/jmx_prometheus/cassandra.yml
+    owner: cassandra
+    group: cassandra
+    mode: '0644'
+
+- name: Download jmx exporter maven_artifact
+  get_url:
+   url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.12.0/jmx_prometheus_javaagent-0.12.0.jar
+   dest: /opt/jmx_prometheus/
+   mode: 644
+ 
 - name: Restart Cassandra
   service:
     name: cassandra

@@ -1,0 +1,29 @@
+- name: Stop and remove Tank Navigator
+  docker_container:
+    name: navigator
+    state: absent
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ navigator_config_file | dirname }}"
+    state: directory
+    recurse: true
+    mode: '0755'
+
+- name: Create Navigator config from template
+  template: 
+    backup: yes
+    src: navigator.json.j2
+    dest: "{{ navigator_config_file }}"
+
+- name: Create docker container tank navigator
+  docker_container:
+    name: navigator 
+    image: geocode.igd.fraunhofer.de:4567/marauder/navigator:latest
+    restart: yes
+    restart_policy: always
+    pull: yes
+    ports:
+    - "8081:80"
+    volumes:
+    - "{{ navigator_config_file }}:/usr/share/nginx/html/config.json"

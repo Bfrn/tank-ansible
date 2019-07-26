@@ -1,0 +1,44 @@
+- name: Update repositories cache and install "prometheus" package
+  apt:
+    name: 
+      - prometheus
+    state: latest
+    update_cache: yes
+
+- name: prometheus config file
+  template:
+    src: prometheus.conf.j2
+    dest: /etc/prometheus/prometheus.yml
+
+- name: Restart prometheus
+  service:
+    name: prometheus
+    state: restarted
+
+- name: ensure grafana apt key is present
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
+    state: present
+  tags: [ apt ]
+
+- name: ensure grafana apt repository is present
+  apt_repository:
+    repo="deb https://packages.grafana.com/oss/deb stable main"
+    update_cache=yes
+    state=present
+  become: yes
+  tags: [ apt ]
+
+- name: ensure grafana is installed
+  apt:
+    name=grafana
+    state=present
+  become: yes
+  tags: installation
+
+- name: ensure grafana is running and enabled to start on boot
+  service:
+    name=grafana-server
+    state=started
+    enabled=yes
+  become: yes

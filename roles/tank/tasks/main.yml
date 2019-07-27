@@ -34,6 +34,12 @@
       TANK_EXHAUSTER_HOST: "{{ hostvars[groups['proxy_nodes'][0]]['ansible_default_ipv4']['address'] }}"
       TANK_EXHAUSTER_PORT: "8082"
 
+
+- name: Wait for tank running
+  wait_for:
+    port: 8888
+    delay: 5
+    
 - name: Check if tank endpoint is available
   uri:
     url: http://127.0.0.1:8888/

@@ -2,4 +2,3 @@
   become: true
   roles:
   - cassandra
-  - node_exporter

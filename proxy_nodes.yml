@@ -4,8 +4,8 @@
 - hosts: proxy_nodes
   become: true
   roles:
-  - docker
   - nginx
   - metrics
+  - exhauster
   - elk-stack
   

@@ -30,3 +30,8 @@
     env:
       EXHAUSTER_MONGO_HOST: "mongo"
       
+- name: Check if exhauster endpoint is available
+  uri:
+    url: http://127.0.0.1:8082/?limit=1
+    method: GET
+    status_code: 200

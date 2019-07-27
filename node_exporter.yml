@@ -1,4 +1,4 @@
-- hosts: cassandra_nodes,tank_nodes
+- hosts: cassandra_nodes,tank_nodes,proxy_nodes
   become: true
   roles:
   - node_exporter

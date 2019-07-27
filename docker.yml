@@ -1,4 +1,4 @@
-- hosts: tank_nodes
+- hosts: tank_nodes,proxy_nodes
   become: true
   roles:
   - docker

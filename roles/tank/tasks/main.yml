@@ -3,19 +3,6 @@
     name: tank
     state: absent
 
-- name: Stop and remove Tank Navigator
-  docker_container:
-    name: navigator
-    state: absent
-
-- name: Prune Docker
-  docker_prune:
-    containers: yes
-    images: yes
-    networks: yes
-    volumes: yes
-    builder_cache: yes
-
 - name: Create docker container tank
   docker_container:
     name: tank 
@@ -47,27 +34,14 @@
       TANK_EXHAUSTER_HOST: "{{ hostvars[groups['proxy_nodes'][0]]['ansible_default_ipv4']['address'] }}"
       TANK_EXHAUSTER_PORT: "8082"
 
-- name: Create a directory if it does not exist
-  file:
-    path: "{{ navigator_config_file | dirname }}"
-    state: directory
-    recurse: true
-    mode: '0755'
 
-- name: Create Navigator config from template
-  template: 
-    backup: yes
-    src: navigator.json.j2
-    dest: "{{ navigator_config_file }}"
-
-- name: Create docker container tank navigator
-  docker_container:
-    name: navigator 
-    image: geocode.igd.fraunhofer.de:4567/marauder/navigator:latest
-    restart: yes
-    restart_policy: always
-    pull: yes
-    ports:
-    - "8081:80"
-    volumes:
-    - "{{ navigator_config_file }}:/usr/share/nginx/html/config.json"
+- name: Wait for tank running
+  wait_for:
+    port: 8888
+    delay: 5
+    
+- name: Check if tank endpoint is available
+  uri:
+    url: http://127.0.0.1:8888/
+    method: GET
+    status_code: 200

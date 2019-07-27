@@ -6,4 +6,5 @@
   roles:
   - filebeat
   - tank
+  - navigator
   

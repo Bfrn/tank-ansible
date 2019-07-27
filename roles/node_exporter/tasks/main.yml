@@ -1,0 +1,36 @@
+- name: Install Prometheus Node Exporter
+  apt:
+    name: prometheus-node-exporter
+    allow_unauthenticated: yes
+    update_cache: yes
+
+- name: Download and extract node_exporter {{ exporter_version }} tarball
+  unarchive:
+    src: https://github.com/prometheus/node_exporter/releases/download/v{{exporter_version}}/node_exporter-{{ exporter_version }}.linux-amd64.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: Stop prometheus-node-exporter
+  service:
+    name: prometheus-node-exporter
+    state: stopped
+
+- name: Copy exporter binary to /usr/bin
+  copy:
+    src: /opt/node_exporter-{{ exporter_version }}.linux-amd64/node_exporter
+    dest: /usr/bin/prometheus-node-exporter
+    remote_src: yes
+    owner: root
+    group: root
+    mode: '755'
+
+- name: Restart prometheus-node-exporter
+  service:
+    name: prometheus-node-exporter
+    state: restarted
+
+- name: Check if node exporter emits metrics
+  uri:
+    url: http://127.0.0.1:9100/metrics
+    method: GET
+    status_code: 200

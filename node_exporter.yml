@@ -1,0 +1,4 @@
+- hosts: cassandra_nodes,tank_nodes
+  become: true
+  roles:
+  - node_exporter

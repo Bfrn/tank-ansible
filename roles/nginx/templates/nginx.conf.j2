@@ -80,6 +80,10 @@ http {
 		server localhost:8082;
 	}
 
+	upstream grafana {
+		server localhost:3000;
+	}
+
   server {
       listen 80;
 
@@ -99,6 +103,11 @@ http {
       location /exhauster/ {
       	rewrite ^/exhauster(.*)$ $1 break;
           proxy_pass http://exhauster;
+      }
+
+      location /grafana/ {
+      	rewrite ^/grafana(.*)$ $1 break;
+          proxy_pass http://grafana;
       }
   }
 }

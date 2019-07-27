@@ -1,0 +1,42 @@
+- name: Stop and remove MongoDB
+  docker_container:
+    name: mongo
+    state: absent
+
+- name: Stop and remove Tank Exhauster
+  docker_container:
+    name: exhauster
+    state: absent
+
+- name: Create docker container mongodb
+  docker_container:
+    name: mongo 
+    image: mongo:latest
+    restart: yes
+    restart_policy: always
+    pull: yes 
+
+- name: Create docker container tank exhauster
+  docker_container:
+    name: exhauster 
+    image: geocode.igd.fraunhofer.de:4567/marauder/exhauster:latest
+    restart: yes
+    restart_policy: always
+    pull: yes
+    links:
+    - "mongo:mongo"
+    ports:
+    - "8082:8080"
+    env:
+      EXHAUSTER_MONGO_HOST: "mongo"
+      
+- name: Wait for exhauster running
+  wait_for:
+    port: 8082
+    delay: 5
+    
+- name: Check if exhauster endpoint is available
+  uri:
+    url: http://127.0.0.1:8082/?limit=1
+    method: GET
+    status_code: 200

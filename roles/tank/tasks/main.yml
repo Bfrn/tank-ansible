@@ -20,7 +20,7 @@
       {{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}
       {%- endfor -%}"
       TANK_DB_STRATEGY: NetworkTopologyStrategy
-      TANK_DB_REPL: "3"
+      TANK_DB_REPL: "2"
       TANK_DB_INDEX: "us_idx"
       TANK_MAIN_ATTR: ""
       TANK_MAIN_ATTR_DEFAULT: ""
@@ -36,11 +36,14 @@
 
 
 - name: Wait for tank running
+  retries: 3
   wait_for:
     port: 8888
     delay: 5
     
 - name: Check if tank endpoint is available
+  retries: 3
+  delay: 10
   uri:
     url: http://127.0.0.1:8888/
     method: GET

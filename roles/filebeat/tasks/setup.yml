@@ -50,6 +50,13 @@
     owner: root
     mode: '0644'
 
+- name: Add systemd service drop-in for filebeat
+  copy:
+    src: filebeat_debug.conf
+    dest: /etc/systemd/system/filebeat.service.d/debug.conf
+    owner: root
+    mode: '0664'
+
 - name: Restart filebeat
   service:
     name: filebeat

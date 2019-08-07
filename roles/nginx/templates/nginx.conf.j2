@@ -84,6 +84,10 @@ http {
 		server localhost:3000;
 	}
 
+	upstream kibana {
+		server localhost:5601;
+	}
+
   server {
       listen 80;
 
@@ -108,6 +112,11 @@ http {
       location /grafana/ {
       	rewrite ^/grafana(.*)$ $1 break;
           proxy_pass http://grafana;
+      }
+
+      location /kibana/ {
+      	rewrite ^/kibana(.*)$ $1 break;
+          proxy_pass http://kibana;
       }
   }
 }

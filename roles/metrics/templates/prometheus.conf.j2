@@ -6,28 +6,28 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
   - job_name: 'tank_nodes'
-    scrape_interval: 1s
+    scrape_interval: 5s
     static_configs:
       - targets: [
       {%- for host in groups['tank_nodes'] -%}
       '{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100'{% if not loop.last %},{% endif %}
       {%- endfor -%}]
   - job_name: 'cassandra_nodes'
-    scrape_interval: 1s
+    scrape_interval: 5s
     static_configs:
       - targets: [
       {%- for host in groups['cassandra_nodes'] -%}
       '{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100'{% if not loop.last %},{% endif %}
       {%- endfor -%}]
   - job_name: 'proxy_nodes'
-    scrape_interval: 1s
+    scrape_interval: 5s
     static_configs:
       - targets: [
       {%- for host in groups['proxy_nodes'] -%}
       '{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100'{% if not loop.last %},{% endif %}
       {%- endfor -%}]
   - job_name: 'cassandra_jmx'
-    scrape_interval: 1s
+    scrape_interval: 5s
     static_configs:
       - targets: [
       {%- for host in groups['cassandra_nodes'] -%}

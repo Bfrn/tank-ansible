@@ -16,6 +16,11 @@
     owner: root
     mode: '0644'
 
+- name: Stop and remove logstash
+  docker_container:
+    name: logstash
+    state: absent
+
 - name: Create a logstash docker-container
   docker_container:
     name: logstash

@@ -1,13 +1,13 @@
-- name: Stop and remove Tank
-  docker_container:
-    name: tank
-    state: absent
+# - name: Stop and remove Tank
+#   docker_container:
+#     name: tank
+#     state: absent
 
 - name: Create docker container tank
   docker_container:
     name: tank 
     image: geocode.igd.fraunhofer.de:4567/marauder/tank:latest
-    restart: yes
+    # restart: yes
     restart_policy: always
     pull: yes
     ports:
@@ -44,6 +44,9 @@
 - name: Check if tank endpoint is available
   retries: 3
   delay: 10
+  register: result
+  until: result.status is defined
+  changed_when: false
   uri:
     url: http://127.0.0.1:8888/
     method: GET

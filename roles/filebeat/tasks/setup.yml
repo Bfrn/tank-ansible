@@ -50,6 +50,12 @@
     owner: root
     mode: '0644'
 
+- name: Create systemd service directory
+  file:
+    path: "/etc/systemd/system/filebeat.service.d"
+    owner: root
+    state: directory
+
 - name: Add systemd service drop-in for filebeat
   copy:
     src: filebeat_debug.conf

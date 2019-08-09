@@ -84,6 +84,17 @@
     port: 5601
     delay: 5
 
+- name: Check if Kibana endpoint is available
+  retries: 3
+  delay: 10
+  register: result
+  until: result.status is defined
+  changed_when: false
+  uri:
+    url: http://127.0.0.1:5601/api/kibana/dashboards/import
+    method: POST
+    status_code: 400
+
 - name: Import tank-dashboard
   uri:
     url: "http://localhost:5601/api/kibana/dashboards/import"

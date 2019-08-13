@@ -90,6 +90,18 @@
     owner: cassandra
     state: directory
 
+- name: Create commitlog directory
+  file:
+    path: "{{ cassandra_commitlog_dir }}"
+    owner: cassandra
+    state: directory
+
+- name: Create hint directory
+  file:
+    path: "{{ cassandra_hint_dir }}"
+    owner: cassandra
+    state: directory
+
 - name: Create JMX exporter directory
   file:
     path: /opt/jmx_prometheus

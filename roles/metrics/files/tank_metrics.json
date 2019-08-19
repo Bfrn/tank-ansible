@@ -49,7 +49,7 @@
   "gnetId": 9096,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1565700765898,
+  "iteration": 1565768338451,
   "links": [
     {
       "icon": "external link",
@@ -936,6 +936,7 @@
           "editable": true,
           "error": false,
           "fill": 1,
+          "fillGradient": 0,
           "grid": {},
           "gridPos": {
             "h": 4,
@@ -971,6 +972,9 @@
             }
           ],
           "nullPointMode": "null as zero",
+          "options": {
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
@@ -1001,6 +1005,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Load: 1m",
           "tooltip": {
@@ -1009,7 +1014,6 @@
             "sort": 0,
             "value_type": "individual"
           },
-          "transparent": false,
           "type": "graph",
           "xaxis": {
             "buckets": null,
@@ -1055,6 +1059,7 @@
           "editable": true,
           "error": false,
           "fill": 1,
+          "fillGradient": 0,
           "grid": {},
           "gridPos": {
             "h": 4,
@@ -1081,6 +1086,9 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null as zero",
+          "options": {
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
@@ -1118,6 +1126,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Load: 5m",
           "tooltip": {
@@ -1126,7 +1135,6 @@
             "sort": 0,
             "value_type": "individual"
           },
-          "transparent": false,
           "type": "graph",
           "xaxis": {
             "buckets": null,
@@ -1171,6 +1179,7 @@
           "editable": true,
           "error": false,
           "fill": 1,
+          "fillGradient": 0,
           "grid": {},
           "gridPos": {
             "h": 4,
@@ -1197,6 +1206,9 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null as zero",
+          "options": {
+            "dataLinks": []
+          },
           "percentage": false,
           "pointradius": 5,
           "points": false,
@@ -1225,6 +1237,7 @@
             }
           ],
           "timeFrom": null,
+          "timeRegions": [],
           "timeShift": null,
           "title": "Load: 15m",
           "tooltip": {
@@ -1233,7 +1246,6 @@
             "sort": 0,
             "value_type": "individual"
           },
-          "transparent": false,
           "type": "graph",
           "xaxis": {
             "buckets": null,
@@ -1400,7 +1412,7 @@
       }
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1408,230 +1420,247 @@
         "y": 9
       },
       "id": 94,
-      "panels": [
-        {
-          "aliasColors": {
-            "Available": "#E24D42",
-            "Used": "#BA43A9"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "Used Memory from a total available of 100%.\n- Memory Threshold:\n >Critical: > 85% Used Memory",
-          "editable": true,
-          "error": false,
-          "fill": 6,
-          "grid": {},
-          "gridPos": {
-            "h": 4,
-            "w": 24,
-            "x": 0,
-            "y": 59
-          },
-          "height": "",
-          "id": 6,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "hideZero": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 2,
-          "links": [
-            {
-              "title": "Memory",
-              "url": "https://linux-audit.com/understanding-memory-information-on-linux-systems/"
-            }
-          ],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "(((node_memory_MemTotal_bytes{alias=~\"$host\"} - node_memory_MemFree_bytes{alias=~\"$host\"} - node_memory_Cached_bytes{alias=~\"$host\"} - node_memory_Buffers_bytes{alias=~\"$host\"}) / (node_memory_MemTotal_bytes{alias=~\"$host\"})) * 100)",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{alias}}",
-              "refId": "C"
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": false,
-              "line": true,
-              "op": "gt",
-              "value": 85,
-              "yaxis": "left"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Memory Used",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": 0,
-              "format": "percent",
-              "label": "",
-              "logBase": 1,
-              "max": "100",
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "none",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "$datasource",
-          "decimals": 2,
-          "description": "Used Swap from a total available of 100%.\n- Swap Threshold:\n >Critical: > 75% Used Swap\n\nJust as Linux uses free memory for purposes such as buffering data from disk, there eventually is a need to free up private or anonymous pages used by a process. These pages, unlike those backed by a file on disk, cannot be simply discarded to be read in later. Instead they have to be carefully copied to backing storage, sometimes called the swap area.",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {},
-          "gridPos": {
-            "h": 4,
-            "w": 24,
-            "x": 0,
-            "y": 63
-          },
-          "id": 23,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideEmpty": false,
-            "max": true,
-            "min": true,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "(((node_memory_SwapTotal_bytes{alias=~\"$host\"} - node_memory_SwapFree_bytes{alias=~\"$host\"}) / node_memory_SwapTotal_bytes{alias=~\"$host\"}) * 100)",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Swap: {{alias}}",
-              "refId": "C"
-            }
-          ],
-          "thresholds": [
-            {
-              "colorMode": "critical",
-              "fill": false,
-              "line": true,
-              "op": "gt",
-              "value": 75,
-              "yaxis": "left"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Swap Used",
-          "tooltip": {
-            "msResolution": false,
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": false,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": 0,
-              "format": "percent",
-              "label": "",
-              "logBase": 1,
-              "max": "100",
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "none",
-              "logBase": 1,
-              "max": null,
-              "min": 0,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
+      "panels": [],
       "title": "Memory",
       "type": "row"
+    },
+    {
+      "aliasColors": {
+        "Available": "#E24D42",
+        "Used": "#BA43A9"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "description": "Used Memory from a total available of 100%.\n- Memory Threshold:\n >Critical: > 85% Used Memory",
+      "editable": true,
+      "error": false,
+      "fill": 6,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "height": "",
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [
+        {
+          "title": "Memory",
+          "url": "https://linux-audit.com/understanding-memory-information-on-linux-systems/"
+        }
+      ],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "(((node_memory_MemTotal_bytes{alias=~\"$host\",job=\"tank_nodes\"} - node_memory_MemFree_bytes{alias=~\"$host\",job=\"tank_nodes\"} - node_memory_Cached_bytes{alias=~\"$host\",job=\"tank_nodes\"} - node_memory_Buffers_bytes{alias=~\"$host\",job=\"tank_nodes\"}) / (node_memory_MemTotal_bytes{alias=~\"$host\",job=\"tank_nodes\"})) * 100)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": 85,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Used Tank Nodes",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": "",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "none",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Available": "#E24D42",
+        "Used": "#BA43A9"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "description": "Used Memory from a total available of 100%.\n- Memory Threshold:\n >Critical: > 85% Used Memory",
+      "editable": true,
+      "error": false,
+      "fill": 6,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "height": "",
+      "id": 124,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [
+        {
+          "title": "Memory",
+          "url": "https://linux-audit.com/understanding-memory-information-on-linux-systems/"
+        }
+      ],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "(((node_memory_MemTotal_bytes{alias=~\"$host\",job=\"cassandra_nodes\"} - node_memory_MemFree_bytes{alias=~\"$host\",job=\"cassandra_nodes\"} - node_memory_Cached_bytes{alias=~\"$host\",job=\"cassandra_nodes\"} - node_memory_Buffers_bytes{alias=~\"$host\",job=\"cassandra_nodes\"}) / (node_memory_MemTotal_bytes{alias=~\"$host\",job=\"cassandra_nodes\"})) * 100)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": 85,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Used Cassandra Nodes",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": "",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "none",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "collapsed": false,
@@ -1639,7 +1668,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 18
       },
       "id": 90,
       "panels": [],
@@ -1663,7 +1692,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 19
       },
       "id": 110,
       "legend": {
@@ -1671,6 +1700,7 @@
         "avg": true,
         "current": false,
         "hideEmpty": false,
+        "hideZero": false,
         "max": true,
         "min": true,
         "rightSide": true,
@@ -1697,10 +1727,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_disk_io_time_seconds_total{alias=~'$host',device!~'^(md\\\\\\\\d+$|dm-)'}[5m])",
+          "expr": "irate(node_disk_io_time_seconds_total{alias=~'$host',device='vdb'}[5m])",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "Disk I/O Utilisation:  {{alias}} [{{device}}]",
+          "legendFormat": "Disk I/O:  {{instance}}",
           "refId": "A"
         }
       ],
@@ -1717,7 +1748,117 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Disk I/O Utilisation",
+      "title": "Disk I/O Cassandra",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "description": "",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 120,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(node_disk_io_time_seconds_total{alias=~'$host',device='vda',job='tank_nodes'}[5m])",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "Disk I/O:  {{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": 0.9,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk I/O Tank Nodes",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -1771,7 +1912,7 @@
         "h": 4,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 29
       },
       "id": 46,
       "legend": {
@@ -1881,7 +2022,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 33
       },
       "height": "",
       "id": 53,
@@ -2011,7 +2152,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 38
       },
       "height": "",
       "id": 102,
@@ -2141,7 +2282,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 43
       },
       "height": "",
       "id": 111,
@@ -2248,7 +2389,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 48
       },
       "id": 60,
       "panels": [],
@@ -2269,10 +2410,10 @@
       "fillGradient": 0,
       "grid": {},
       "gridPos": {
-        "h": 12,
+        "h": 8,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 49
       },
       "id": 69,
       "legend": {
@@ -2306,10 +2447,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "((node_filesystem_size_bytes{alias=~\"$host\"} - node_filesystem_avail_bytes{alias=~\"$host\"}) / node_filesystem_size_bytes{alias=~\"$host\"}) * 100",
+          "expr": "((node_filesystem_size_bytes{alias=~\"$host\",job=\"tank_nodes\",device=\"/dev/vda1\"} - node_filesystem_avail_bytes{alias=~\"$host\",job=\"tank_nodes\",device=\"/dev/vda1\"}) / node_filesystem_size_bytes{alias=~\"$host\",job=\"tank_nodes\",device=\"/dev/vda1\"}) * 100",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Filesystem Space Used: {{alias}} {{fstype}} {{device}} {{mountpoint}}",
+          "legendFormat": "Filesystem Space Used: {{instance}} {{fstype}} {{device}} {{mountpoint}}",
           "refId": "B"
         }
       ],
@@ -2326,7 +2467,116 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Filesystem Space Used",
+      "title": "Filesystem Space Used Tank Nodes",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": "",
+          "logBase": 1,
+          "max": "100",
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "none",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "description": "Filesystem used space.\n> If is > 80% then is Critical.",
+      "editable": true,
+      "error": false,
+      "fill": 2,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 57
+      },
+      "id": 121,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "((node_filesystem_size_bytes{alias=~\"$host\",job=\"cassandra_nodes\",device=\"/dev/vdb\"} - node_filesystem_avail_bytes{alias=~\"$host\",job=\"cassandra_nodes\",device=\"/dev/vdb\"}) / node_filesystem_size_bytes{alias=~\"$host\",job=\"cassandra_nodes\",device=\"/dev/vdb\"}) * 100",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Filesystem Space Used: {{instance}} {{fstype}} {{device}} {{mountpoint}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "lt",
+          "value": 80,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Filesystem Space Used Cassandra Nodes",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -2370,7 +2620,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 65
       },
       "id": 109,
       "panels": [
@@ -2613,7 +2863,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 66
       },
       "id": 86,
       "panels": [],
@@ -2637,7 +2887,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 67
       },
       "id": 21,
       "legend": {
@@ -2683,12 +2933,12 @@
           "calculatedInterval": "2s",
           "datasourceErrors": {},
           "errors": {},
-          "expr": "rate(node_network_receive_bytes_total{alias=~\"$host\",device!=\"lo\"}[5m]) ",
+          "expr": "rate(node_network_receive_bytes_total{alias=~\"$host\",device=\"ens3\",job=\"proxy_nodes\"}[5m]) ",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "IN: {{ device }}: {{alias}} ",
+          "legendFormat": "IN: {{ device }}: {{job}}{{instance}} ",
           "metric": "",
           "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_memory_MemFree%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Buffers%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Cached%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%22900s%22%2C%22end_input%22%3A%222015-10-22%2015%3A25%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
           "refId": "B",
@@ -2699,11 +2949,11 @@
           "calculatedInterval": "2s",
           "datasourceErrors": {},
           "errors": {},
-          "expr": "rate(node_network_transmit_bytes_total{alias=~\"$host\",device!=\"lo\"}[5m]) * -1",
+          "expr": "rate(node_network_transmit_bytes_total{alias=~\"$host\",device=\"ens3\",job=\"proxy_nodes\"}[5m]) * -1",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "OUT: {{ device }}: {{alias}} ",
+          "legendFormat": "OUT: {{ device }}: {{job}}{{instance}} ",
           "metric": "",
           "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_memory_MemTotal%7Balias%3D%5C%22%24host%5C%22%7D%20-%20(node_memory_MemFree%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Buffers%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Cached%7Balias%3D%5C%22%24host%5C%22%7D)%22%2C%22range_input%22%3A%22900s%22%2C%22end_input%22%3A%222015-10-22%2015%3A25%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
           "refId": "A",
@@ -2748,7 +2998,341 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Network IN/OUT Traffic",
+      "title": "Network I/O proxy Node",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "Bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "none",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "description": "IN/ OUT Traffic rate.\n- Critical:\n  - If IN/OUT traffic = 0% from a total of 100% possible on that interface there is Low Bandwidth or interface problem.\n  - If IN/OUT traffic > 95% from a total of 100% possible on that interface there is High Bandwidth.\n\n95% (0.95 x 1e+09 =0.95 x 1 x 10^9 = 0.884756 GB, Gigabytes) supposing that the interface is 1 GB.",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 75
+      },
+      "id": 123,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/IN/",
+          "color": "#447ebc"
+        },
+        {
+          "alias": "/OUT/",
+          "color": "#508642"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "calculatedInterval": "2s",
+          "datasourceErrors": {},
+          "errors": {},
+          "expr": "rate(node_network_receive_bytes_total{alias=~\"$host\",device=\"ens3\",job=\"tank_nodes\"}[5m]) ",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "IN: {{ device }}: {{job}}{{instance}} ",
+          "metric": "",
+          "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_memory_MemFree%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Buffers%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Cached%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%22900s%22%2C%22end_input%22%3A%222015-10-22%2015%3A25%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
+          "refId": "B",
+          "step": 120,
+          "target": ""
+        },
+        {
+          "calculatedInterval": "2s",
+          "datasourceErrors": {},
+          "errors": {},
+          "expr": "rate(node_network_transmit_bytes_total{alias=~\"$host\",device=\"ens3\",job=\"tank_nodes\"}[5m]) * -1",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "OUT: {{ device }}: {{job}}{{instance}} ",
+          "metric": "",
+          "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_memory_MemTotal%7Balias%3D%5C%22%24host%5C%22%7D%20-%20(node_memory_MemFree%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Buffers%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Cached%7Balias%3D%5C%22%24host%5C%22%7D)%22%2C%22range_input%22%3A%22900s%22%2C%22end_input%22%3A%222015-10-22%2015%3A25%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
+          "refId": "A",
+          "step": 120,
+          "target": ""
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "lt",
+          "value": 1,
+          "yaxis": "left"
+        },
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": 950003816.2,
+          "yaxis": "left"
+        },
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": -950003816.2,
+          "yaxis": "left"
+        },
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": -1,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network I/O Tank Nodes",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "Bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "none",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "description": "IN/ OUT Traffic rate.\n- Critical:\n  - If IN/OUT traffic = 0% from a total of 100% possible on that interface there is Low Bandwidth or interface problem.\n  - If IN/OUT traffic > 95% from a total of 100% possible on that interface there is High Bandwidth.\n\n95% (0.95 x 1e+09 =0.95 x 1 x 10^9 = 0.884756 GB, Gigabytes) supposing that the interface is 1 GB.",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 83
+      },
+      "id": 122,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/IN/",
+          "color": "#447ebc"
+        },
+        {
+          "alias": "/OUT/",
+          "color": "#508642"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "calculatedInterval": "2s",
+          "datasourceErrors": {},
+          "errors": {},
+          "expr": "rate(node_network_receive_bytes_total{alias=~\"$host\",device=\"ens3\",job=\"cassandra_nodes\"}[5m]) ",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "IN: {{ device }}: {{job}}{{instance}} ",
+          "metric": "",
+          "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_memory_MemFree%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Buffers%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Cached%7Balias%3D%5C%22%24host%5C%22%7D%22%2C%22range_input%22%3A%22900s%22%2C%22end_input%22%3A%222015-10-22%2015%3A25%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
+          "refId": "B",
+          "step": 120,
+          "target": ""
+        },
+        {
+          "calculatedInterval": "2s",
+          "datasourceErrors": {},
+          "errors": {},
+          "expr": "rate(node_network_transmit_bytes_total{alias=~\"$host\",device=\"ens3\",job=\"cassandra_nodes\"}[5m]) * -1",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "OUT: {{ device }}: {{job}}{{instance}} ",
+          "metric": "",
+          "prometheusLink": "/api/datasources/proxy/1/graph#%5B%7B%22expr%22%3A%22node_memory_MemTotal%7Balias%3D%5C%22%24host%5C%22%7D%20-%20(node_memory_MemFree%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Buffers%7Balias%3D%5C%22%24host%5C%22%7D%20%2B%20node_memory_Cached%7Balias%3D%5C%22%24host%5C%22%7D)%22%2C%22range_input%22%3A%22900s%22%2C%22end_input%22%3A%222015-10-22%2015%3A25%22%2C%22step_input%22%3A%22%22%2C%22stacked%22%3Atrue%2C%22tab%22%3A0%7D%5D",
+          "refId": "A",
+          "step": 120,
+          "target": ""
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "lt",
+          "value": 1,
+          "yaxis": "left"
+        },
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": 950003816.2,
+          "yaxis": "left"
+        },
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": -950003816.2,
+          "yaxis": "left"
+        },
+        {
+          "colorMode": "critical",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": -1,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network I/O Cassandra Nodes",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -2793,7 +3377,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 91
       },
       "id": 96,
       "panels": [
@@ -3139,7 +3723,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 92
       },
       "id": 114,
       "panels": [
@@ -3450,7 +4034,7 @@
       "type": "row"
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 19,
   "style": "dark",
   "tags": [],
@@ -3477,7 +4061,7 @@
         "allValue": "",
         "current": {},
         "datasource": "$datasource",
-        "definition": "",
+        "definition": "label_values(alias)",
         "hide": 0,
         "includeAll": true,
         "label": "Host",
@@ -3558,5 +4142,5 @@
   "timezone": "browser",
   "title": "tank_metrics",
   "uid": "k2prHNdZz",
-  "version": 2
+  "version": 13
 }

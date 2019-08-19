@@ -40,3 +40,4 @@ number_of_seeds=2
 
 [tank_nodes:vars]
 navigator_config_file=/opt/navigator/config.json
+mapbox_key=xxx

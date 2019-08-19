@@ -12,7 +12,7 @@ Control node needs to have ssh key-auth access to all nodes, including tank, cas
 `ansible-playbook -i hosts site.yml`  
 `ansible-playbook -i hosts tank_nodes.yml`  
 
-Prometheus Node Exporter 0.15 will be installed, make sure to use the matching Grafana Dashboard template (e.g. https://grafana.com/dashboards/7039).
+The Prometheus Node Exporter is installed on all nodes, the version can be controlled using the variables for its ragarding role.
 
 ## Roles
 

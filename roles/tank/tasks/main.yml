@@ -1,7 +1,7 @@
-# - name: Stop and remove Tank
-#   docker_container:
-#     name: tank
-#     state: absent
+- name: Stop and remove Tank
+  docker_container:
+    name: tank
+    state: absent
 
 - name: Create docker container tank
   docker_container:
@@ -14,6 +14,8 @@
     - "8888:8888"
     volumes:
     - /var/log/tank:/app/logs
+    tmpfs:
+    - /app/tmp
     env:
       JAVA_OPTS: "-Xms2g -Xmx2g"
       TANK_DB_HOSTS: "{%- for host in groups['cassandra_nodes'] -%}

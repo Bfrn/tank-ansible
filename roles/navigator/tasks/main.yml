@@ -19,7 +19,7 @@
 - name: Create docker container tank navigator
   docker_container:
     name: navigator 
-    image: geocode.igd.fraunhofer.de:4567/marauder/navigator:latest
+    image: maraud3r/navigator:latest
     restart: yes
     restart_policy: always
     pull: yes

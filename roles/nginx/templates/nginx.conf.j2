@@ -92,7 +92,7 @@ http {
       listen 80;
 
       add_header 'Access-Control-Allow-Origin' '*' always;
-      add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+      add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE' always;
       add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range' always;
       add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
 
@@ -104,30 +104,33 @@ http {
       	if ($request_method = 'OPTIONS') {
       		return 204;
       	}
-      	  rewrite ^/tank(.*)$ $1 break;
-          proxy_pass http://tank;
+      	rewrite ^/tank(.*)$ $1 break;
+        proxy_pass http://tank;
       }
 
       location /navigator/ {
       	if ($request_method = 'OPTIONS') {
       		return 204;
       	}
-          proxy_pass http://navigator;
+        proxy_pass http://navigator;
       }
 
       location /exhauster/ {
+      	if ($request_method = 'OPTIONS') {
+      		return 204;
+      	}
       	rewrite ^/exhauster(.*)$ $1 break;
-          proxy_pass http://exhauster;
+        proxy_pass http://exhauster;
       }
 
       location /grafana/ {
       	rewrite ^/grafana(.*)$ $1 break;
-          proxy_pass http://grafana;
+        proxy_pass http://grafana;
       }
 
       location /kibana/ {
       	rewrite ^/kibana(.*)$ $1 break;
-          proxy_pass http://kibana;
+        proxy_pass http://kibana;
       }
   }
 }

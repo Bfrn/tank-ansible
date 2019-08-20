@@ -19,7 +19,7 @@
 - name: Create docker container tank exhauster
   docker_container:
     name: exhauster 
-    image: geocode.igd.fraunhofer.de:4567/marauder/exhauster:latest
+    image: maraud3r/exhauster:latest
     restart: yes
     restart_policy: always
     pull: yes
@@ -33,7 +33,7 @@
 - name: Wait for exhauster running
   wait_for:
     port: 8082
-    delay: 5
+    delay: 10
     
 - name: Check if exhauster endpoint is available
   uri:

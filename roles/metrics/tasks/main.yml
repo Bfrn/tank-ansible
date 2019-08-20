@@ -63,7 +63,7 @@
 - name: Wait for grafana running
   wait_for:
     port: 3000
-    delay: 5
+    delay: 10
 
 - name: Create prometheus datasource
   grafana_datasource:

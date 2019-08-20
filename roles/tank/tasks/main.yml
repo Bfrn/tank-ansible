@@ -6,7 +6,7 @@
 - name: Create docker container tank
   docker_container:
     name: tank 
-    image: geocode.igd.fraunhofer.de:4567/marauder/tank:latest
+    image: maraud3r/tank:latest
     # restart: yes
     restart_policy: always
     pull: yes
@@ -44,11 +44,10 @@
     delay: 5
     
 - name: Check if tank endpoint is available
-  retries: 3
-  delay: 10
+  retries: 20
+  delay: 5
   register: result
-  until: result.status is defined
-  changed_when: false
+  until: result.status == 200
   uri:
     url: http://127.0.0.1:8888/
     method: GET

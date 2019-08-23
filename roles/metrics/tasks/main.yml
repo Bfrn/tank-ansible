@@ -54,7 +54,7 @@
     regexp: '^(.*)serve_from_sub_path(.*)$'
     line: "serve_from_sub_path = true"
     create: yes
-  when: ( cloud_provider != "aws" )
+  when: ( cloud_provider == "aws" )
 
 - name: ensure grafana is running and enabled to start on boot
   service:

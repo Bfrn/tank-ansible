@@ -104,7 +104,6 @@ http {
       	if ($request_method = 'OPTIONS') {
       		return 204;
       	}
-      	rewrite ^/tank(.*)$ $1 break;
         proxy_pass http://tank;
       }
 
@@ -119,7 +118,6 @@ http {
       	if ($request_method = 'OPTIONS') {
       		return 204;
       	}
-      	rewrite ^/exhauster(.*)$ $1 break;
         proxy_pass http://exhauster;
       }
 

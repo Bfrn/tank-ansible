@@ -18,6 +18,7 @@
     - /app/tmp
     env:
       JAVA_OPTS: "-Xms2g -Xmx2g"
+      TANK_PREFIX: "/tank"
       TANK_DB_HOSTS: "{%- for host in groups['cassandra_nodes'] -%}
       {{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}
       {%- endfor -%}"
@@ -49,6 +50,6 @@
   register: result
   until: result.status == 200
   uri:
-    url: http://127.0.0.1:8888/
+    url: http://127.0.0.1:8888/tank/
     method: GET
     status_code: 200

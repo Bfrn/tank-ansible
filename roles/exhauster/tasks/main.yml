@@ -19,7 +19,7 @@
 - name: Create docker container tank exhauster
   docker_container:
     name: exhauster 
-    image: maraud3r/exhauster:latest
+    image: ap3rture/exhauster:latest
     restart: yes
     restart_policy: always
     pull: yes
@@ -29,6 +29,7 @@
     - "8082:8080"
     env:
       EXHAUSTER_MONGO_HOST: "mongo"
+      PREFIX: "/exhauster"
       
 - name: Wait for exhauster running
   wait_for:
@@ -37,6 +38,6 @@
     
 - name: Check if exhauster endpoint is available
   uri:
-    url: http://127.0.0.1:8082/?limit=1
+    url: http://127.0.0.1:8082/exhauster/?limit=1
     method: GET
     status_code: 200

@@ -1,4 +1,4 @@
-# Ansible Playbooks for deplying Tank cluster
+# Ansible Playbooks for deploying a Tank Cluster
 
 ## Prequisites
 

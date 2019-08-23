@@ -3,8 +3,14 @@
 
 - hosts: proxy_nodes
   become: true
+  tasks:
+  - include_role:  
+      name: nginx
+    when: ( cloud_provider != "aws" )
+
+- hosts: proxy_nodes
+  become: true
   roles:
-  - nginx
   - metrics
   - exhauster
   - elk-stack

@@ -48,6 +48,14 @@
     line: "root_url = http://{{ proxy_node_public_ip }}/grafana"
     create: yes
 
+- name: Set serve_from_sub_path to true for grafana
+  lineinfile:
+    path: /etc/grafana/grafana.ini
+    regexp: '^(.*)serve_from_sub_path(.*)$'
+    line: "serve_from_sub_path = true"
+    create: yes
+  when: ( cloud_provider != "aws" )
+
 - name: ensure grafana is running and enabled to start on boot
   service:
     name=grafana-server

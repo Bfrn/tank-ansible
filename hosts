@@ -8,6 +8,8 @@ setupElk=False
 teardownElk=False
 pruneData=True
 proxy_node_public_ip=192.168.0.2
+public_endpoint=192.168.0.2
+cloud_provider=
 
 [proxy_nodes]
 192.168.0.2

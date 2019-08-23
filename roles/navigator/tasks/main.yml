@@ -16,10 +16,16 @@
     src: navigator.json.j2
     dest: "{{ navigator_config_file }}"
 
+- name: Copy Navigator nginx config
+  copy:
+    src: nginx.conf
+    dest: /opt/navigator/nginx.conf
+    mode: '644'
+
 - name: Create docker container tank navigator
   docker_container:
     name: navigator 
-    image: maraud3r/navigator:latest
+    image: ap3rture/navigator:latest
     restart: yes
     restart_policy: always
     pull: yes
@@ -27,3 +33,4 @@
     - "8081:80"
     volumes:
     - "{{ navigator_config_file }}:/usr/share/nginx/html/config.json"
+    - "/opt/navigator/nginx.conf:/etc/nginx/nginx.conf"

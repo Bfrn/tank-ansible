@@ -24,6 +24,7 @@
       {%- endfor -%}"
       TANK_DB_STRATEGY: NetworkTopologyStrategy
       TANK_DB_REPL: "2"
+      TANK_DB_DATACENTER: "{% if cloud_provider == 'aws' %}{{ cloud_region[:-2] }}{% else %}datacenter1{% endif %}"
       TANK_DB_INDEX: "us_idx"
       TANK_MAIN_ATTR: ""
       TANK_MAIN_ATTR_DEFAULT: ""

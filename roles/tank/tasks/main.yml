@@ -6,7 +6,7 @@
 - name: Create docker container tank
   docker_container:
     name: tank 
-    image: ap3rture/tank:latest
+    image: docker.pkg.github.com/aperture-sh/tank/tank:latest 
     # restart: yes
     restart_policy: always
     pull: yes
@@ -14,10 +14,9 @@
     - "8888:8888"
     volumes:
     - /var/log/tank:/app/logs
-    tmpfs:
-    - /app/tmp
     env:
-      JAVA_OPTS: "-Xms2g -Xmx2g"
+      TANK_TMP_DIR: "/storage/tmp"
+      JAVA_OPTS: "-Xms6g -Xmx6g"
       TANK_PREFIX: "/tank"
       TANK_DB_HOSTS: "{%- for host in groups['cassandra_nodes'] -%}
       {{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}

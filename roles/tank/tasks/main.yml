@@ -6,7 +6,7 @@
 - name: Create docker container tank
   docker_container:
     name: tank 
-    image: docker.pkg.github.com/aperture-sh/tank/tank:latest 
+    image: ap3rture/tank:latest 
     # restart: yes
     restart_policy: always
     pull: yes
